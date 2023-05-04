@@ -15,7 +15,7 @@
 
 <script setup lang="ts"></script>
 
-<style>
+<style lang="scss" scoped>
 .line {
   margin-top: 20px;
   height: 0.1px;

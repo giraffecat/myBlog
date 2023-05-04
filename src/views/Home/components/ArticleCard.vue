@@ -1,34 +1,22 @@
 <template>
   <div class="article">
-    <div class="title">《JavaScript 二十年》推荐语</div>
-    <div class="content" v-html="article"></div>
-    <div class="post-meta">Posted by Hux on April 10, 2021</div>
+    <div @click="handleClick">
+      <div class="title">{{ article.article_title }}</div>
+      <div class="content" v-html="article.article_content"></div>
+      <div class="post-meta">Posted by Hux on April 10, 2021</div>
+    </div>
     <div class="line" />
   </div>
 </template>
 
 <script setup lang="ts">
-import markdownToHtml from '../utils/markdownToHtml.js'
-import MD from 'markdown-it'
-
-import { ref, onMounted, computed } from 'vue'
-// import test from '../../public/test.md'
-import { ArticleAPI } from '../api/api'
-const article = ref('')
-let md = new MD()
-
-onMounted(async () => {
-  let res = await ArticleAPI.GetArticleList()
-  let content = res.data.data[3].article_content
-  content = md
-    .render(content)
-    .replace(/<\/?[^>]*>/g, '')
-    .replace(/[|]*\n/, '')
-    .replace(/&npsp;/gi, '')
-  article.value = content
-  console.log('article', content)
-})
-
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const { article } = defineProps(['article'])
+const handleClick = (e: any) => {
+  router.push(`/article/${article.id}`)
+}
+console.log('article', article)
 // console.log(markdownToHtml('### test'))
 // import MD from 'markdown-it'
 
@@ -40,7 +28,7 @@ onMounted(async () => {
 // )
 // console.log('article', test)
 </script>
-<style scoped>
+<style lang="less" scoped>
 .article {
   display: flex;
   flex-direction: column;
@@ -56,6 +44,9 @@ onMounted(async () => {
   line-height: 1.3;
   margin-top: 30px;
   margin-bottom: 8px;
+  &:hover {
+    color: #0085a1;
+  }
 }
 .content {
   font-size: 15px;
@@ -71,7 +62,9 @@ onMounted(async () => {
   -webkit-line-clamp: 5;
 
   -webkit-box-orient: vertical;
-
+  &:hover {
+    color: #0085a1;
+  }
   /* width: 100px; */
 }
 .post-meta {

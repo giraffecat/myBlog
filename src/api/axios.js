@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios from 'axios'
 // import { showMessage } from "./status";   // 引入状态码文件
 // import { ElMessage } from 'element-plus'  // 引入el 提示框，这个项目里用什么组件库这里引什么
 
 // 设置接口超时时间
-axios.defaults.timeout = 60000;
+axios.defaults.timeout = 60000
 
 // 请求地址，这里是动态赋值的的环境变量，下一篇会细讲，这里跳过
 // @ts-ignore
-// axios.defaults.baseURL = import.meta.env.VITE_API_DOMAIN;   
-axios.defaults.baseURL = "http://localhost:3000"; 
-// axios.defaults.baseURL = "http://localhost:3000" 
+// axios.defaults.baseURL = import.meta.env.VITE_API_DOMAIN;
+axios.defaults.baseURL = 'http://localhost:9000'
+// axios.defaults.baseURL = "http://localhost:3000"
 
 //http request 拦截器
 // axios.interceptors.request.use(
@@ -45,28 +45,30 @@ axios.defaults.baseURL = "http://localhost:3000";
 // );
 
 // 封装 GET POST 请求并导出
-export function request(url='',params={},type='POST'){
-//设置 url params type 的默认值
-return new Promise((resolve,reject)=>{
-  let promise
-  if( type.toUpperCase()==='GET' ){
-    promise = axios({
-      url,
-      params
-    })
-  }else if( type.toUpperCase()=== 'POST' ){
-    promise = axios({
-      method:'POST',
-      url,
-      data:params
-    })
-  }
-  //处理返回
-  promise.then(res=>{
-    console.log("res",res)
-    resolve(res)
-  }).catch(err=>{
-    reject(err)
+export function request(url = '', params = {}, type = 'POST') {
+  //设置 url params type 的默认值
+  return new Promise((resolve, reject) => {
+    let promise
+    if (type.toUpperCase() === 'GET') {
+      promise = axios({
+        url,
+        params
+      })
+    } else if (type.toUpperCase() === 'POST') {
+      promise = axios({
+        method: 'POST',
+        url,
+        data: params
+      })
+    }
+    //处理返回
+    promise
+      .then((res) => {
+        console.log('res', res)
+        resolve(res)
+      })
+      .catch((err) => {
+        reject(err)
+      })
   })
-})
 }

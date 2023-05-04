@@ -1,6 +1,6 @@
 <template>
   <div class="about">ABOUT ME</div>
-  <img class="img" src="https://avatars.githubusercontent.com/u/5563315?v=4" />
+  <img class="img" />
   <div class="subTitle">要做一个有 swag 的程序员</div>
 </template>
 

@@ -1,9 +1,9 @@
-import { request } from './axios'
+import { request } from '../../../api/axios'
 
 /**
  * @description -封装User类型的接口方法
  */
-export default class ArticleAPI {
+export class ArticleAPI {
   // 模块一
   /**
    * @description 用户登录

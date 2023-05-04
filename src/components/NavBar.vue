@@ -1,10 +1,14 @@
 <template>
   <div ref="getHeigh" :class="navStyle">
     <div class="nav-container">
-      <div class="navbar-brand">Hui Blog</div>
+      <div class="navbar-brand">
+        <router-link to="/"> HUI BLOG</router-link>
+      </div>
       <div style="flex-grow: 1"></div>
       <div class="nav-item">
-        <div>HOME</div>
+        <div>
+          <router-link to="/"> HOME </router-link>
+        </div>
         <div>ABOUT</div>
         <div>ARCHIVE</div>
       </div>
@@ -51,7 +55,8 @@ const scrolltop = () => {
 }
 </script>
 
-<style>
+<style lang="less">
+@brand-primary: #01a6c7;
 .navbar {
   /* background: none;
   border: none; */
@@ -74,6 +79,12 @@ const scrolltop = () => {
   -webkit-transition: background-color 0.3s;
   -moz-transition: background-color 0.3s;
   transition: background-color 0.3s;
+  a {
+    &:hover,
+    &:focus {
+      color: @brand-primary;
+    }
+  }
 }
 .nav-container {
   display: flex;
@@ -86,6 +97,7 @@ const scrolltop = () => {
   font-weight: 900;
   letter-spacing: 1px;
 }
+
 .nav-item {
   display: flex;
   flex-direction: row;
@@ -117,5 +129,8 @@ const scrolltop = () => {
   -webkit-transition: -webkit-transform 0.3s;
   -moz-transition: -moz-transform 0.3s;
   transition: transform 0.3s;
+  a {
+    color: #404040 !important;
+  }
 }
 </style>
